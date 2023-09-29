@@ -49,48 +49,6 @@ Image Gallery by Marcos Watanabe (https://marcoswatanabe.com/)
 </section>
 
 <style>
-  @media (max-width: 768px) {
-  {%- if section.settings.mobile_slider != blank -%}
-      .mw-image-gallery {
-        display: flex;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        grid-gap:5px;
-        grid-gap: {{ grid_gap | divided_by: 2 }}px;
-      }
-    
-      .mw-image-gallery a {
-        width: 70%;
-        height: auto;
-        margin-right: 10px;
-        scroll-snap-align: start;
-        flex: 0 0 70%;
-        padding-bottom: 70%;
-      }
-    
-      .mw-image-gallery a:last-child {
-        margin-right: 0;
-        margin-left: auto;
-        scroll-snap-align: end;
-      }
-  {%- else -%}
-    .mw-image-gallery {
-      grid-template-columns: repeat({{ images_per_row_mobile }}, 1fr);
-      grid-gap: {{ grid_gap | divided_by: 2 }}px;
-    }
-  {%- endif -%}
-  }
-  @media (min-width: 769px) {
-    .mw-image-gallery {
-      display: grid;
-      grid-template-columns: repeat({{ images_per_row }}, 1fr);
-      grid-gap: {{ grid_gap }}px;
-    }
-  }
-</style>
-
-{% style %}
 /* Gallery grid */
 .mw-image-gallery {
   display: grid;
@@ -212,7 +170,47 @@ Image Gallery by Marcos Watanabe (https://marcoswatanabe.com/)
 .mw-arrow-right {
   right: 0;
 }
-{% endstyle %}
+  @media (max-width: 768px) {
+  {%- if section.settings.mobile_slider != blank -%}
+      .mw-image-gallery {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        grid-gap:5px;
+        grid-gap: {{ grid_gap | divided_by: 2 }}px;
+      }
+    
+      .mw-image-gallery a {
+        width: 70%;
+        height: auto;
+        margin-right: 10px;
+        scroll-snap-align: start;
+        flex: 0 0 70%;
+        padding-bottom: 70%;
+      }
+    
+      .mw-image-gallery a:last-child {
+        margin-right: 0;
+        margin-left: auto;
+        scroll-snap-align: end;
+      }
+  {%- else -%}
+    .mw-image-gallery {
+      grid-template-columns: repeat({{ images_per_row_mobile }}, 1fr);
+      grid-gap: {{ grid_gap | divided_by: 2 }}px;
+    }
+  {%- endif -%}
+  }
+  @media (min-width: 769px) {
+    .mw-image-gallery {
+      display: grid;
+      grid-template-columns: repeat({{ images_per_row }}, 1fr);
+      grid-gap: {{ grid_gap }}px;
+    }
+  }
+</style>
+
 
 {% javascript %}
 (function(){
