@@ -14,10 +14,10 @@ Image Gallery by Marcos Watanabe (https://marcoswatanabe.com/)
     <div class="page-width">{{ section.settings.heading }}</div>
   {%- endif -%}
   
-  {% if section.blocks.size > 0 %}
+  {%- if section.blocks.size > 0 -%}
   <div class="mw-image-gallery {% unless section.settings.full_width != blank %} page-width{% endunless %}">
-    {% for block in section.blocks %}
-      {% assign image = block.settings.image %}
+    {%- for block in section.blocks -%}
+      {%- assign image = block.settings.image -%}
       <a href="{{ image | img_url: '1600x' }}" data-desktop="{{ image | img_url: '1600x' }}" data-mobile="{{ image | img_url: '749x' }}" class="mw-image-gallery__item" target="_blank" title="{{ image.alt }}">
           <img 
             srcset="
@@ -32,9 +32,10 @@ Image Gallery by Marcos Watanabe (https://marcoswatanabe.com/)
             src="{{ image | image_url: width: 533 }}"
             sizes="(min-width: {{ settings_page_width }}px) {{ settings_page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
             alt="{{ image.alt | default: page.title | append: " " | append: forloop.index }}"
+            loading="lazy"
             >
       </a>
-    {% endfor %}
+    {%- endfor -%}
   </div>
   
   <div id="mw-modal" class="mw-modal">
@@ -45,7 +46,7 @@ Image Gallery by Marcos Watanabe (https://marcoswatanabe.com/)
       <a id="mw-modal-close" class="mw-modal-close" href="#">&#10005;</a>
     </div>
   </div>
-  {% endif %}
+  {%- endif -%}
 </section>
 
 <style>
